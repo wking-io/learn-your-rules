@@ -2,9 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const RadioAnswer = ({ method, index, addWrapper }) => (
+const RadioAnswer = ({ method, index, addWrapper, handleRadioSubmit }) => (
   <FancyRadio className="w-50">
-    <input type="radio" value={method} name="answer" id={`answer-${index}`} />
+    <input
+      type="radio"
+      value={method}
+      name="answer"
+      id={`answer-${index}`}
+      onChange={handleRadioSubmit}
+    />
     <label className="pl3 pr3 pt3 pb3 db" htmlFor={`answer-${index}`}>
       {addWrapper ? `Array.${method}()` : method}
     </label>

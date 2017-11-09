@@ -15,6 +15,10 @@ export default class Form extends Component {
     this.setState({ answer: e.target.value });
   };
 
+  handleRadioSubmit = e => {
+    this.form.submit();
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     const submittedAnswer = {};
@@ -24,7 +28,13 @@ export default class Form extends Component {
   render() {
     const { questionType, answers, showSubmit } = this.props;
     return (
-      <form className="flex flex-wrap" onSubmit={this.handleSubmit}>
+      <form
+        className="flex flex-wrap"
+        onSubmit={this.handleSubmit}
+        ref={form => {
+          this.form = form;
+        }}
+      >
         {answers ? (
           answers.map((answer, i) => (
             <RadioAnswer
@@ -32,6 +42,7 @@ export default class Form extends Component {
               key={`answer-${answer}`}
               index={i}
               addWrapper={questionType === 'mc'}
+              handleRadioSubmit={this.handleRadioSubmit}
             />
           ))
         ) : (
