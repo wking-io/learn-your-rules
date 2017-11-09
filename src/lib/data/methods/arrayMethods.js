@@ -1,4 +1,4 @@
-import questionTemplate from '../helpers/questionTemplate';
+import questionTemplate from '../../helpers/questionTemplate';
 
 const arrayMethods = [
   {
