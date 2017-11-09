@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "immutability-helper": "^2.5.0",
+    "lodash.sample": "^4.2.1",
+    "lodash.samplesize": "^4.2.0",
+    "lodash.shuffle": "^4.2.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

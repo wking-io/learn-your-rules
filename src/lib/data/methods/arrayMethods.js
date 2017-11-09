@@ -20,7 +20,7 @@ const result = numbers.${''}(number => number * 2);
   { name: 'jake', age: 72 },
   { name: 'wilson', age: 34 }
 ];
-const result = names.${''}(name => name.age < 40);
+const result = people.${''}(person => person.age < 40);
 // result = [ { name: 'andrew', age: 24 }, { name: 'wilson', age: 34 } ];`,
     ],
   },
@@ -34,8 +34,8 @@ const result = names.${''}(name => name.age < 40);
   { name: 'jake', age: 72 },
   { name: 'wilson', age: 34 }
 ];
-const result = names.${''}(name => name.age < 40);
-// result = [ { name: 'andrew', age: 24 }, { name: 'wilson', age: 34 } ];`,
+const result = people.${''}(person => person.name === 'andrew');
+// result = [ { name: 'andrew', age: 24 } ];`,
     ],
   },
   {
@@ -48,8 +48,13 @@ const result = names.${''}(name => name.age < 40);
   { name: 'jake', age: 72 },
   { name: 'wilson', age: 34 }
 ];
-const result = names.${''}(name => name.age < 40);
-// result = [ { name: 'andrew', age: 24 }, { name: 'wilson', age: 34 } ];`,
+const result = people.${''}((a, b) => a.age < b.age);
+// result = [ 
+//   { name: 'andrew', age: 24 }, 
+//   { name: 'wilson', age: 34 },
+//   { name: 'jerry', age: 53 },
+//   { name: 'jake', age: 72 }
+// ];`,
     ],
   },
   {
@@ -62,8 +67,8 @@ const result = names.${''}(name => name.age < 40);
   { name: 'jake', age: 72 },
   { name: 'wilson', age: 34 }
 ];
-const result = names.${''}(name => name.age < 40);
-// result = [ { name: 'andrew', age: 24 }, { name: 'wilson', age: 34 } ];`,
+const result = people.${''}(person => person.age < 40);
+// result = false;`,
     ],
   },
   {
@@ -76,8 +81,8 @@ const result = names.${''}(name => name.age < 40);
   { name: 'jake', age: 72 },
   { name: 'wilson', age: 34 }
 ];
-const result = names.${''}(name => name.age < 40);
-// result = [ { name: 'andrew', age: 24 }, { name: 'wilson', age: 34 } ];`,
+const result = people.${''}(sum, person => person.age + sum, 0);
+// result = 183;`,
     ],
   },
 ];

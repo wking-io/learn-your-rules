@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const RadioAnswer = ({ method, index }) => (
+const RadioAnswer = ({ method, index, addWrapper }) => (
   <FancyRadio className="w-50">
     <input type="radio" value={method} name="answer" id={`answer-${index}`} />
-    <label className="pl3 pr3 pt3 pb3 db" htmlFor={`answer-${index}`}>{`Array.${method}()`}</label>
+    <label className="pl3 pr3 pt3 pb3 db" htmlFor={`answer-${index}`}>
+      {addWrapper ? `Array.${method}()` : method}
+    </label>
   </FancyRadio>
 );
 
