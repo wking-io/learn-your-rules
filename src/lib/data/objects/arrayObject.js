@@ -1,4 +1,4 @@
-import { array } from '../../helpers/colors';
+import { array } from '../../colors';
 
 const arrayObject = {
   id: 'array',

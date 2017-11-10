@@ -26,7 +26,7 @@ export default class Form extends Component {
   };
 
   render() {
-    const { questionType, answers, showSubmit } = this.props;
+    const { quizId, answers, showSubmit } = this.props;
     return (
       <form
         className="flex flex-wrap"
@@ -41,7 +41,7 @@ export default class Form extends Component {
               method={answer}
               key={`answer-${answer}`}
               index={i}
-              addWrapper={questionType === 'mc'}
+              addWrapper={quizId === 'multiple-choice'}
               handleRadioSubmit={this.handleRadioSubmit}
             />
           ))

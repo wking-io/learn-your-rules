@@ -1,2 +1,2 @@
-const getProp = obj => key => obj[key];
+const getProp = key => obj => obj[key];
 export default getProp;

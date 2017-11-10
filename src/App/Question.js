@@ -1,45 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import sample from 'lodash.sample';
-import sampleSize from 'lodash.samplesize';
-import shuffle from 'lodash.shuffle';
 import Form from './Form';
-import getSampleSolo from '../lib/helpers/getSampleSolo';
+import { getQuestion, getMultipleChoiceAnswers, getTrueFalseMethod } from '../lib/data/methods';
+import { getQuizQuestionTitle, getQuizShowSubmit } from '../lib/data/quizTypes';
 
-const Question = ({
-  questionTitle,
-  questionType,
-  showSubmit,
-  method,
-  otherMethods,
-  submitAnswer,
-}) => {
-  const question = sample(method.questions);
-  const getAnswers = () => {
-    if (questionType === 'mc') {
-      return shuffle([method.name, ...sampleSize(otherMethods, 3)]);
-    } else if (questionType === 'tf') {
-      return ['True', 'False'];
-    } else {
-      return false;
-    }
-  };
-  const answers = getAnswers(questionType);
-  const trueFalseMethod =
-    questionType === 'tf' ? getSampleSolo([method.name, otherMethods]) : false;
+const Question = ({ objectId, quizId, method, submitAnswer }) => {
+  const question = getQuestion(method);
+  const isMultipleChoice = quizId === 'multiple-choice';
+  const isTrueFalse = quizId === 'true-false';
+  const answers = isMultipleChoice
+    ? getMultipleChoiceAnswers(objectId, method.name)
+    : isTrueFalse ? ['True', 'False'] : false;
+  const trueFalseMethod = isTrueFalse ? getTrueFalseMethod(method.name) : false;
   return (
     <main>
       <section className="pa3">
-        <h1 className="f3 mt1">{questionTitle}</h1>
+        <h1 className="f3 mt1">{getQuizQuestionTitle(quizId)}</h1>
         <CodeBlock className="pa3 mb1">
-          {trueFalseMethod ? question(trueFalseMethod) : question()}
+          {isTrueFalse ? question(trueFalseMethod) : question()}
         </CodeBlock>
       </section>
       <Form
         answers={answers}
-        showSubmit={showSubmit}
-        questionType={questionType}
+        showSubmit={getQuizShowSubmit(quizId)}
+        quizId={quizId}
         submitAnswer={submitAnswer}
       />
     </main>
@@ -47,9 +32,13 @@ const Question = ({
 };
 
 Question.propTypes = {
-  questionTitle: PropTypes.string.isRequired,
-  questionType: PropTypes.string.isRequired,
-  showSubmit: PropTypes.bool.isRequired,
+  objectId: PropTypes.string.isRequired,
+  quizId: PropTypes.string.isRequired,
+  method: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    questions: PropTypes.arrayOf(PropTypes.func).isRequired,
+  }).isRequired,
+  submitAnswer: PropTypes.func.isRequired,
 };
 
 export default Question;
