@@ -12,7 +12,7 @@ const Question = ({ objectId, quizId, method, submitAnswer }) => {
   const answers = isMultipleChoice
     ? getMultipleChoiceAnswers(objectId, method.name)
     : isTrueFalse ? ['True', 'False'] : false;
-  const trueFalseMethod = isTrueFalse ? getTrueFalseMethod(method.name) : false;
+  const trueFalseMethod = isTrueFalse ? getTrueFalseMethod(objectId, method.name) : false;
   return (
     <main>
       <section className="pa3">
@@ -22,6 +22,8 @@ const Question = ({ objectId, quizId, method, submitAnswer }) => {
         </CodeBlock>
       </section>
       <Form
+        method={method}
+        trueFalseMethod={trueFalseMethod}
         answers={answers}
         showSubmit={getQuizShowSubmit(quizId)}
         quizId={quizId}

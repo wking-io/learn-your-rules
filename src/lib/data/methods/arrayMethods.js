@@ -35,7 +35,7 @@ const result = people.${''}(person => person.age < 40);
   { name: 'wilson', age: 34 }
 ];
 const result = people.${''}(person => person.name === 'andrew');
-// result = [ { name: 'andrew', age: 24 } ];`,
+// result = { name: 'andrew', age: 24 };`,
     ],
   },
   {

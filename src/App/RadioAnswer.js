@@ -2,17 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const RadioAnswer = ({ method, index, addWrapper, handleRadioSubmit }) => (
+const RadioAnswer = ({ method, index, isBool, handleChange, handleClick }) => (
   <FancyRadio className="w-50">
     <input
       type="radio"
-      value={method}
+      value={isBool ? !index : method}
       name="answer"
-      id={`answer-${index}`}
-      onChange={handleRadioSubmit}
+      id={`answer-${method}`}
+      onChange={handleChange}
+      onFocus={handleChange}
     />
-    <label className="pl3 pr3 pt3 pb3 db" htmlFor={`answer-${index}`}>
-      {addWrapper ? `Array.${method}()` : method}
+    <label
+      className="pl3 pr3 pt3 pb3 db"
+      htmlFor={`answer-${method}`}
+      onClick={isBool ? handleClick(!index) : handleClick(method)}
+    >
+      {isBool ? method : `Array.${method}()`}
     </label>
   </FancyRadio>
 );
@@ -20,6 +25,9 @@ const RadioAnswer = ({ method, index, addWrapper, handleRadioSubmit }) => (
 RadioAnswer.propTypes = {
   method: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
+  isBool: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default RadioAnswer;

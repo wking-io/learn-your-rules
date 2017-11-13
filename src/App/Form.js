@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import RadioAnswer from './RadioAnswer';
+import MultipleChoiceForm from './MultipleChoiceForm';
+import TrueFalseForm from './TrueFalseForm';
+import FillInTheBlankForm from './FillInTheBlankForm';
+import makeBool from '../lib/helpers/makeBool';
 
 export default class Form extends Component {
   constructor(props) {
@@ -12,56 +15,73 @@ export default class Form extends Component {
   }
 
   handleChange = e => {
+    e.preventDefault();
     this.setState({ answer: e.target.value });
   };
 
-  handleRadioSubmit = e => {
-    this.form.submit();
+  handleChangeTrueFalse = e => {
+    e.preventDefault();
+    const value = makeBool(e.target.value);
+    this.setState({ answer: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = check => e => {
     e.preventDefault();
-    const submittedAnswer = {};
-    this.props.submitAnswer(submittedAnswer);
+    const { answer } = this.state;
+    const isCorrect = check(answer);
+    console.log(isCorrect);
+    return {
+      answer,
+      isCorrect,
+    };
+  };
+
+  handleClick = check => answer => e => {
+    e.preventDefault();
+    const isCorrect = check(answer);
+    console.log(isCorrect);
+    return {
+      answer,
+      isCorrect,
+    };
+  };
+
+  checkAnswer = method => answer => method === answer;
+  checkTrueFalse = (method, trueFalseAnswer) => answer => {
+    return this.checkAnswer(method)(trueFalseAnswer) === answer;
   };
 
   render() {
-    const { quizId, answers, showSubmit } = this.props;
-    return (
-      <form
-        className="flex flex-wrap"
-        onSubmit={this.handleSubmit}
-        ref={form => {
-          this.form = form;
-        }}
-      >
-        {answers ? (
-          answers.map((answer, i) => (
-            <RadioAnswer
-              method={answer}
-              key={`answer-${answer}`}
-              index={i}
-              addWrapper={quizId === 'multiple-choice'}
-              handleRadioSubmit={this.handleRadioSubmit}
-            />
-          ))
-        ) : (
-          <InputAnswer
-            name="answer"
-            id="answer"
-            placeholder="Enter answer here..."
-            onChange={this.handleChange}
-            className="ba0 pl3 pr3 pt3 pb3 ml3 mr3 mb3 w-100"
-          />
-        )}
-        <QuizSubmit
-          type="submit"
-          value="Submit Answer"
-          className="w-100 pl3 pr3 pt3 pb3"
-          visible={showSubmit}
-          disabled={!this.state.answer}
-        />
-      </form>
+    const { quizId, answers, showSubmit, method, trueFalseMethod } = this.props;
+    const { answer } = this.state;
+    const loadedCheck = this.checkAnswer(method.name);
+    const loadedCheckTrueFalse = this.checkTrueFalse(method.name, trueFalseMethod);
+    return quizId === 'multiple-choice' ? (
+      <MultipleChoiceForm
+        answers={answers}
+        isDisabled={answer.length <= 0}
+        showSubmit={showSubmit}
+        handleChange={this.handleChange}
+        handleClick={this.handleClick(loadedCheck)}
+        handleSubmit={this.handleSubmit(loadedCheck)}
+      />
+    ) : quizId === 'true-false' ? (
+      <TrueFalseForm
+        answers={answers}
+        isDisabled={answer.length <= 0}
+        showSubmit={showSubmit}
+        handleChange={this.handleChangeTrueFalse}
+        handleClick={this.handleClick(loadedCheckTrueFalse)}
+        handleSubmit={this.handleSubmit(loadedCheckTrueFalse)}
+      />
+    ) : (
+      <FillInTheBlankForm
+        answer={this.state.answer}
+        isDisabled={answer.length <= 0}
+        showSubmit={showSubmit}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit(loadedCheck)}
+      />
     );
   }
 }
@@ -70,27 +90,3 @@ Form.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]).isRequired,
   showSubmit: PropTypes.bool.isRequired,
 };
-
-const QuizSubmit = styled.input`
-  background-color: black;
-  color: white;
-  border: none;
-
-  :disabled {
-    opacity: 0.5;
-  }
-
-  ${props =>
-    props.visible ||
-    css`
-      position: absolute;
-      left: -9999px;
-    `} :disabled {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-`;
-
-const InputAnswer = styled.input`
-  border-color: black;
-  color: black;
-`;

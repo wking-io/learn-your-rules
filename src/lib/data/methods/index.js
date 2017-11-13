@@ -24,7 +24,7 @@ const getFilteredMethodNames = (objectId, methodName) =>
 export const getMultipleChoiceAnswers = (objectId, methodName) =>
   shuffle([methodName, ...sampleSize(getFilteredMethodNames(objectId, methodName), 3)]);
 
-export const getTrueFalseMethod = methodName =>
-  getSampleSolo([methodName, getFilteredMethodNames(methodName)]);
+export const getTrueFalseMethod = (objectId, methodName) =>
+  getSampleSolo([methodName, getFilteredMethodNames(objectId, methodName)]);
 
 export default methods;
