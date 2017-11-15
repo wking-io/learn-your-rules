@@ -15,13 +15,16 @@ const FillInTheBlankForm = ({
   setInputRef,
 }) => (
   <form className="flex flex-wrap" onSubmit={handleSubmit(this.input)}>
+    <input type="hidden" value="something" />
     <InputAnswer
+      type="text"
       name="answer"
       id="answer"
       placeholder="Enter answer here..."
       onChange={handleChange}
       theme={theme}
       value={answer}
+      autoComplete="answer"
       innerRef={input => setInputRef(input)}
       className="ba0 pl3 pr3 pt3 pb3 ml3 mr3 mb3 w-100"
     />

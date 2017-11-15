@@ -5,13 +5,15 @@ import getPercent from '../../lib/helpers/getPercent';
 import { Link } from 'react-router-dom';
 
 const QuizResult = ({ numCorrectAnswers, numTotalAnswers, theme, showReview, resetQuiz }) => (
-  <Box className="w-90 mw8 center" theme={theme}>
-    <p>{`${getPercent(numCorrectAnswers, numTotalAnswers)}%`}</p>
-    <p>{`${numCorrectAnswers}/${numTotalAnswers} Correct`}</p>
-    <a onClick={showReview}>Review Missed Methods</a>
-    <button onClick={resetQuiz}>Try Again</button>
-    <Link to="/">Main Menu</Link>
-  </Box>
+  <div className="vh-100 flex items-center justify-center">
+    <Box className="w-90 mw8 center" theme={theme}>
+      <p>{`${getPercent(numCorrectAnswers, numTotalAnswers)}%`}</p>
+      <p>{`${numCorrectAnswers}/${numTotalAnswers} Correct`}</p>
+      <a onClick={showReview}>Review Missed Methods</a>
+      <button onClick={resetQuiz}>Try Again</button>
+      <Link to="/">Main Menu</Link>
+    </Box>
+  </div>
 );
 
 QuizResult.propTypes = {
