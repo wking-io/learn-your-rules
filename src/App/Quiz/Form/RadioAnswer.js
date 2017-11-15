@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { primary } from '../../../lib/colors';
 
-const RadioAnswer = ({ method, index, isBool, handleChange, handleClick }) => (
-  <FancyRadio className="w-50">
+const RadioAnswer = ({ method, index, theme, isBool, handleChange, handleClick }) => (
+  <FancyRadio className="w-50" theme={theme}>
     <input
       type="radio"
       value={isBool ? !index : method}
@@ -42,15 +43,15 @@ const FancyRadio = styled.div`
   > input[type='radio']:focus + label,
   > input[type='radio']:active + label,
   :hover > label {
-    background-color: black;
+    background-color: ${props => (props.theme ? props.theme : primary)};
     color: white;
   }
 
   > label {
-    border-top: 1px solid black;
+    border-top: 1px solid ${props => (props.theme ? props.theme : primary)};
   }
 
   :nth-child(2n) > label {
-    border-left: 1px solid black;
+    border-left: 1px solid ${props => (props.theme ? props.theme : primary)};
   }
 `;

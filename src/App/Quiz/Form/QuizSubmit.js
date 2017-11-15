@@ -1,12 +1,18 @@
 import styled, { css } from 'styled-components';
+import { primary } from '../../../lib/colors';
 
 const QuizSubmit = styled.input`
-  background-color: black;
+  background-color: ${props => (props.theme ? props.theme : primary)};
   color: white;
   border: none;
 
+  :hover {
+    cursor: pointer;
+  }
+
   :disabled {
     opacity: 0.5;
+    cursor: default;
   }
 
   ${props =>
@@ -15,7 +21,7 @@ const QuizSubmit = styled.input`
       position: absolute;
       left: -9999px;
     `} :disabled {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(${props => (props.theme ? props.theme : primary)}, 0.5);
   }
 `;
 

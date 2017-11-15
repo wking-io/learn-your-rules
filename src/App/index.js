@@ -5,7 +5,7 @@ import SelectQuiz from './SelectQuiz';
 import StudyGuide from './StudyGuide';
 
 const App = () => (
-  <div className="sans-serif">
+  <div>
     <Switch>
       <Route exact path="/" component={SelectQuiz} />
       <Route path="/quiz/:objectId/:quizId" component={Quiz} />

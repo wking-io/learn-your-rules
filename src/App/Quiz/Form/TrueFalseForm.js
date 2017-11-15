@@ -7,6 +7,7 @@ const TrueFalseForm = ({
   answers,
   isDisabled,
   showSubmit,
+  theme,
   handleSubmit,
   handleClick,
   handleChange,
@@ -18,6 +19,7 @@ const TrueFalseForm = ({
         key={`answer-${answer}`}
         index={i}
         isBool={true}
+        theme={theme}
         handleChange={handleChange}
         handleClick={handleClick}
       />
@@ -26,6 +28,7 @@ const TrueFalseForm = ({
       type="submit"
       value="Submit Answer"
       className="w-100 pl3 pr3 pt3 pb3"
+      theme={theme}
       visible={showSubmit}
       disabled={isDisabled}
     />

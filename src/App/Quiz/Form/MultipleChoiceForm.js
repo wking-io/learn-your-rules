@@ -7,6 +7,7 @@ const MultipleChoiceForm = ({
   answers,
   isDisabled,
   showSubmit,
+  theme,
   handleSubmit,
   handleClick,
   handleChange,
@@ -16,7 +17,9 @@ const MultipleChoiceForm = ({
       <RadioAnswer
         method={answer}
         key={`answer-${answer}`}
+        index={i}
         isBool={false}
+        theme={theme}
         handleChange={handleChange}
         handleClick={handleClick}
       />
@@ -24,6 +27,7 @@ const MultipleChoiceForm = ({
     <QuizSubmit
       type="submit"
       value="Submit Answer"
+      theme={theme}
       className="w-100 pl3 pr3 pt3 pb3"
       visible={showSubmit}
       disabled={isDisabled}
