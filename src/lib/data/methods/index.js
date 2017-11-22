@@ -6,9 +6,11 @@ import getProp from '../../helpers/getProp';
 import filterOut from '../../helpers/filterOut';
 import getSampleSolo from '../../helpers/getSampleSolo';
 import array from './arrayMethods';
+import string from './stringMethods';
 
 const methods = {
   array,
+  string,
 };
 
 export const getMethod = (objectId, answers) => {
