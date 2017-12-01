@@ -1,13 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Quiz from './Quiz';
+import Nav from './Nav';
 import Dashboard from './Dashboard';
 import StudyGuide from './StudyGuide';
+import Container from './Container';
 
 const App = () => (
   <BrowserRouter>
     <Container>
+      <Nav />
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route path="/quiz/:objectId/:quizId" component={Quiz} />
@@ -18,9 +20,3 @@ const App = () => (
 );
 
 export default App;
-
-const Container = styled.div`
-  max-width: 1060px;
-  width: 90vw;
-  margin: 8rem auto;
-`;

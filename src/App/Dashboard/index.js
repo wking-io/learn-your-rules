@@ -8,19 +8,17 @@ import MethodTile from './MethodTile';
 const SelectQuiz = () => {
   const isMinimal = objects.length < 3;
   return (
-    <div className="w-90 center">
-      <MethodList>
-        {objects.map((object, i) => (
-          <MethodTile
-            key={object.id}
-            object={object}
-            quizTypes={quizTypes}
-            index={i}
-            isMinimal={isMinimal}
-          />
-        ))}
-      </MethodList>
-    </div>
+    <MethodList>
+      {objects.map((object, i) => (
+        <MethodTile
+          key={object.id}
+          object={object}
+          quizTypes={quizTypes}
+          index={i}
+          isMinimal={isMinimal}
+        />
+      ))}
+    </MethodList>
   );
 };
 
