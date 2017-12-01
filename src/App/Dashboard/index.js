@@ -5,15 +5,24 @@ import quizTypes from '../../lib/data/quizTypes';
 import { media } from '../../lib/media';
 import MethodTile from './MethodTile';
 
-const SelectQuiz = () => (
-  <div className="w-90 center">
-    <MethodList>
-      {objects.map((object, i) => (
-        <MethodTile key={object.id} object={object} quizTypes={quizTypes} index={i} />
-      ))}
-    </MethodList>
-  </div>
-);
+const SelectQuiz = () => {
+  const isMinimal = objects.length < 3;
+  return (
+    <div className="w-90 center">
+      <MethodList>
+        {objects.map((object, i) => (
+          <MethodTile
+            key={object.id}
+            object={object}
+            quizTypes={quizTypes}
+            index={i}
+            isMinimal={isMinimal}
+          />
+        ))}
+      </MethodList>
+    </div>
+  );
+};
 
 export default SelectQuiz;
 

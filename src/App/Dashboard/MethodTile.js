@@ -6,8 +6,8 @@ import { primary } from '../../lib/colors';
 import { condensed } from '../../lib/fonts';
 import { media } from '../../lib/media';
 
-const MethodTile = ({ object, quizTypes, index }) => (
-  <Tile>
+const MethodTile = ({ object, quizTypes, index, isMinimal }) => (
+  <Tile isMinimal={isMinimal}>
     <TileHeader>
       <TileNumber>{index.toString().length === 1 ? `0${index + 1}` : index + 1}</TileNumber>
     </TileHeader>
@@ -40,7 +40,9 @@ const Tile = styled.div`
   ${media.m`
     flex: 0 0 calc(50% - 8rem);
     margin: 0 0 8rem 0;
-  `} ${media.l`
+  `} ${props =>
+      props.isMinimal ||
+      media.l`
     flex-basis: calc(33% - 8rem);
   `};
 `;
