@@ -21,7 +21,7 @@ const QuizResult = ({ numCorrectAnswers, numTotalAnswers, theme, showReview, res
         <ButtonInABox theme={theme} onClick={resetQuiz}>
           Try Again
         </ButtonInABox>
-        <LinkInABox theme={theme} primary to="/">
+        <LinkInABox theme={theme} to="/">
           Main Menu
         </LinkInABox>
       </div>

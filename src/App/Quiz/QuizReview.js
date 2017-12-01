@@ -3,7 +3,7 @@ import React from 'react';
 const QuizReview = ({ missedAnswers }) => (
   <div>
     {missedAnswers.map(answer => (
-      <div>
+      <div key={answer.id}>
         <p>{answer.id}</p>
         <p>{answer.correctAnswer}</p>
         <p>{answer.submittedAnswer}</p>
