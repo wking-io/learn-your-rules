@@ -1,47 +1,93 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import QuizIcon from './QuizIcon';
-import Box from '../Box';
+import { transparentize } from 'polished';
 import { primary } from '../../lib/colors';
+import { condensed } from '../../lib/fonts';
+import { media } from '../../lib/media';
 
 const MethodTile = ({ object, quizTypes, index }) => (
-  <Box className="w-third ba bw1 mr3" key={object.id} theme={object.color}>
-    <div className="pa4">
-      <h2 className="mt1 mb0">{`${index.toString().length === 1 ? `0${index + 1}` : index + 1}. ${
-        object.name
-      }`}</h2>
-      <p className="lh-copy mb1">{object.description}</p>
-    </div>
-    <ul className="list ma0 pa0">
-      <MethodOption className="bt" theme={object.color}>
-        <Link
-          to={`/study-guide/${object.id}`}
-          className="link black underline-hover flex items-center pa3"
-        >
-          <QuizIcon className="mr3 w-10" icon="study-guide" color={object.color} />
-          Study Guide
-        </Link>
-      </MethodOption>
-      {quizTypes.map(quiz => (
-        <MethodOption className="bt" key={quiz.id} theme={object.color}>
-          <Link
-            to={`/quiz/${object.id}/${quiz.id}`}
-            className="link black underline-hover flex items-center pa3"
-          >
-            <QuizIcon className="mr3 w-10" icon={quiz.id} color={object.color} />
-            {quiz.name}
-          </Link>
-        </MethodOption>
-      ))}
-    </ul>
-  </Box>
+  <Tile>
+    <TileHeader>
+      <TileNumber>{index.toString().length === 1 ? `0${index + 1}` : index + 1}</TileNumber>
+    </TileHeader>
+    <main>
+      <SubHeading>{object.name}</SubHeading>
+      <Copy>{object.description}</Copy>
+      <ul className="list ma0 pa0">
+        <li className="mb4" key="study-guide">
+          <UnderlineLink to={`/study-guide/${object.id}`} theme={object.color}>
+            Study Guide
+          </UnderlineLink>
+        </li>
+        {quizTypes.map(quiz => (
+          <li className="mb4" key={quiz.id}>
+            <UnderlineLink to={`/quiz/${object.id}/${quiz.id}`} theme={object.color}>
+              {quiz.name}
+            </UnderlineLink>
+          </li>
+        ))}
+      </ul>
+    </main>
+  </Tile>
 );
 
-const MethodOption = styled.li.attrs({
-  theme: props => props.theme || primary,
-})`
-  border-color: ${props => props.theme};
+export default MethodTile;
+
+const Tile = styled.div`
+  margin: 0 0 16rem 0;
+
+  ${media.m`
+    flex: 0 0 calc(50% - 8rem);
+    margin: 0 0 8rem 0;
+  `} ${media.l`
+    flex-basis: calc(33% - 8rem);
+  `};
 `;
 
-export default MethodTile;
+const TileHeader = styled.header`
+  background-image: linear-gradient(${primary}, ${primary});
+  background-size: 100% 1.5rem;
+  background-position: 0 1rem;
+  background-repeat: no-repeat;
+  text-align: right;
+`;
+
+const TileNumber = styled.span`
+  line-height: 1;
+  font-weight: 800;
+  background-color: white;
+  padding: 0 0 0 2rem;
+`;
+
+const SubHeading = styled.h2`
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-family: ${condensed};
+  margin: 3rem 0 6rem;
+`;
+
+const Copy = styled.p`
+  line-height: 1.5;
+  margin: 0 0 6rem 0;
+`;
+
+const UnderlineLink = styled(Link)`
+  font-weight: bold;
+  color: ${primary};
+  text-decoration: none;
+  background-image: linear-gradient(
+    ${transparentize(0.75, primary)},
+    ${transparentize(0.75, primary)}
+  );
+  background-size: 100% 1.5rem;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-image: linear-gradient(
+      ${transparentize(0.5, primary)},
+      ${transparentize(0.5, primary)}
+    );
+  }
+`;

@@ -1,7 +1,13 @@
+html {
+  font-size: 4px;
+}
+
 body {
   margin: 0;
   padding: 0;
-  color: #22232c;
-  font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
-    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  color: #444659;
+  font-size: 400%;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, 'Helvetica Neue', sans-serif;
+  background-color: #fafafa;
 }

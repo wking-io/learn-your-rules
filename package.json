@@ -18,8 +18,9 @@
     "store": "^2.0.12",
     "styled-components": "^2.2.3",
     "tachyons": "^4.9.0",
-    "typeface-fira-mono": "0.0.43",
-    "typeface-fira-sans": "0.0.43"
+    "typeface-roboto": "0.0.45",
+    "typeface-roboto-condensed": "0.0.45",
+    "typeface-roboto-mono": "0.0.44"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'tachyons';
-import 'typeface-fira-sans';
-import 'typeface-fira-mono';
+import 'typeface-roboto';
+import 'typeface-roboto-mono';
+import 'typeface-roboto-condensed';
 
 import './index.css';
 import App from './App';
