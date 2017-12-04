@@ -2,27 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { transparentize } from 'polished';
-import { primary } from '../../lib/colors';
-import { condensed } from '../../lib/fonts';
-import { media } from '../../lib/media';
+import { primary, light } from '../lib/colors';
+import { condensed } from '../lib/fonts';
+import { media } from '../lib/media';
 
-const MethodTile = ({ object, quizTypes, index, isMinimal }) => (
+const ObjectTile = ({ object, quizTypes, index, isMinimal, theme }) => (
   <Tile isMinimal={isMinimal}>
-    <TileHeader>
-      <TileNumber>{index.toString().length === 1 ? `0${index + 1}` : index + 1}</TileNumber>
+    <TileHeader theme={theme}>
+      <TileNumber theme={theme}>
+        {index.toString().length === 1 ? `0${index + 1}` : index + 1}
+      </TileNumber>
     </TileHeader>
     <main>
       <SubHeading>{object.name}</SubHeading>
       <Copy>{object.description}</Copy>
       <ul className="list ma0 pa0">
         <li className="mb4" key="study-guide">
-          <UnderlineLink to={`/study-guide/${object.id}`} theme={object.color}>
+          <UnderlineLink to={`/study-guide/${object.id}`} theme={theme}>
             Study Guide
           </UnderlineLink>
         </li>
         {quizTypes.map(quiz => (
           <li className="mb4" key={quiz.id}>
-            <UnderlineLink to={`/quiz/${object.id}/${quiz.id}`} theme={object.color}>
+            <UnderlineLink to={`/quiz/${object.id}/${quiz.id}`} theme={theme}>
               {quiz.name}
             </UnderlineLink>
           </li>
@@ -32,7 +34,7 @@ const MethodTile = ({ object, quizTypes, index, isMinimal }) => (
   </Tile>
 );
 
-export default MethodTile;
+export default ObjectTile;
 
 const Tile = styled.div`
   margin: 0 0 16rem 0;
@@ -48,7 +50,10 @@ const Tile = styled.div`
 `;
 
 const TileHeader = styled.header`
-  background-image: linear-gradient(${primary}, ${primary});
+  background-image: ${props =>
+    props.theme === 'dark'
+      ? `linear-gradient(${light}, ${light})`
+      : `linear-gradient(${primary}, ${primary})`};
   background-size: 100% 1.5rem;
   background-position: 0 1rem;
   background-repeat: no-repeat;
@@ -58,7 +63,7 @@ const TileHeader = styled.header`
 const TileNumber = styled.span`
   line-height: 1;
   font-weight: 800;
-  background-color: white;
+  background-color: ${props => (props.theme === 'dark' ? primary : light)};
   padding: 0 0 0 2rem;
 `;
 
@@ -76,20 +81,32 @@ const Copy = styled.p`
 
 const UnderlineLink = styled(Link)`
   font-weight: bold;
-  color: ${primary};
+  color: ${({ theme }) => (theme === 'dark' ? light : primary)};
   text-decoration: none;
-  background-image: linear-gradient(
+  background-image: ${({ theme }) =>
+    theme === 'dark'
+      ? `linear-gradient(
+    ${transparentize(0.75, light)},
+    ${transparentize(0.75, light)}
+  )`
+      : `linear-gradient(
     ${transparentize(0.75, primary)},
     ${transparentize(0.75, primary)}
-  );
+  )`};
   background-size: 100% 1.5rem;
   background-position: 0 100%;
   background-repeat: no-repeat;
 
   &:hover {
-    background-image: linear-gradient(
-      ${transparentize(0.5, primary)},
-      ${transparentize(0.5, primary)}
-    );
+    background-image: ${({ theme }) =>
+      theme === 'dark'
+        ? `linear-gradient(
+    ${transparentize(0.5, light)},
+    ${transparentize(0.5, light)}
+  )`
+        : `linear-gradient(
+    ${transparentize(0.5, primary)},
+    ${transparentize(0.5, primary)}
+  )`};
   }
 `;

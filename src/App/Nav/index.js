@@ -7,7 +7,7 @@ import Menu from './Menu';
 import { condensed } from '../../lib/fonts';
 import { primary } from '../../lib/colors';
 
-class Nav extends Component {
+class NavContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,34 +17,39 @@ class Nav extends Component {
 
   toggleMenu = e => {
     e.preventDefault();
-    this.setState(prevState => ({ menuOpen: !prevState }));
+    this.setState(({ menuOpen }) => ({ menuOpen: !menuOpen }));
   };
 
   render() {
+    const { menuOpen } = this.state;
     return (
-      <nav className="flex">
-        <MenuLink to="/">
-          <FileIcon icon="logo" /> LEARN YOUR RULES
+      <Nav className="flex items-center justify-between">
+        <MenuLink to="/" className="flex items-center">
+          <FileIcon icon="logo" /> <span>LEARN YOUR RULES</span>
         </MenuLink>
-        <MenuToggle toggleMenu={this.toggleMenu} />
-        <Menu isOpen={this.state.menuOpen} />
-      </nav>
+        <MenuToggle toggleMenu={this.toggleMenu} isOpen={menuOpen} />
+        <Menu isOpen={menuOpen} />
+      </Nav>
     );
   }
 }
 
-export default withRouter(Nav);
+export default withRouter(NavContainer);
 
+const Nav = styled.nav`
+  height: 8rem;
+  padding: 4rem 0;
+`;
 const MenuLink = styled(Link)`
   text-transform: uppercase;
   text-decoration: none;
   font-family: ${condensed};
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: bold;
   color: ${primary};
 
   & svg {
-    height: 32px;
+    height: 6rem;
     width: auto;
     margin-right: 3rem;
   }
