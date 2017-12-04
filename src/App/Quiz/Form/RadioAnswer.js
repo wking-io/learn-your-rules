@@ -14,7 +14,7 @@ const RadioAnswer = ({ method, index, theme, isBool, handleChange, handleClick }
       onFocus={handleChange}
     />
     <label
-      className="pl3 pr3 pt3 pb3 db"
+      className="db"
       htmlFor={`answer-${method}`}
       onClick={isBool ? handleClick(!index) : handleClick(method)}
     >
@@ -43,15 +43,16 @@ const FancyRadio = styled.div`
   > input[type='radio']:focus + label,
   > input[type='radio']:active + label,
   :hover > label {
-    background-color: ${props => (props.theme ? props.theme : primary)};
+    background-color: ${primary};
     color: white;
   }
 
   > label {
-    border-top: 1px solid ${props => (props.theme ? props.theme : primary)};
+    border-top: 1px solid ${primary};
+    padding: 4rem;
   }
 
   :nth-child(2n) > label {
-    border-left: 1px solid ${props => (props.theme ? props.theme : primary)};
+    border-left: 1px solid ${primary};
   }
 `;

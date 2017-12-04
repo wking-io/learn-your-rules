@@ -3,27 +3,21 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Box from '../Box';
 import getPercent from '../../lib/helpers/getPercent';
-import Button, { ButtonInABox, LinkInABox } from '../Buttons.js';
+import { ButtonInABox, LinkInABox, UnderlineButton } from '../Buttons.js';
 
-const QuizResult = ({ numCorrectAnswers, numTotalAnswers, theme, showReview, resetQuiz }) => (
+const QuizResult = ({ numCorrectAnswers, numTotalAnswers, showReview, resetQuiz }) => (
   <div className="vh-100 flex items-center justify-center">
-    <Box className="w-90 mw8 center" theme={theme}>
+    <Box>
       <div className="flex flex-wrap items-center pa4">
         <Grade className="w-50">{`${getPercent(numCorrectAnswers, numTotalAnswers)}%`}</Grade>
         <div className="w-50">
           <p>{`${numCorrectAnswers}/${numTotalAnswers} Methods Correct`}</p>
-          <Button underline theme={theme} onClick={showReview}>
-            Review Missed Methods
-          </Button>
+          <UnderlineButton onClick={showReview}>Review Missed Methods</UnderlineButton>
         </div>
       </div>
       <div className="flex">
-        <ButtonInABox theme={theme} onClick={resetQuiz}>
-          Try Again
-        </ButtonInABox>
-        <LinkInABox theme={theme} to="/">
-          Main Menu
-        </LinkInABox>
+        <ButtonInABox onClick={resetQuiz}>Try Again</ButtonInABox>
+        <LinkInABox to="/">Main Menu</LinkInABox>
       </div>
     </Box>
   </div>

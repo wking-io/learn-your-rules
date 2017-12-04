@@ -1,15 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import { primary } from '../lib/colors';
 
-const Box = ({ children, theme, className }) => (
-  <FancyBox className={`ba bw1 ${className}`} theme={theme}>
-    {children}
-  </FancyBox>
-);
+const Box = styled.div`
+  width: 100%;
+  border: 2px solid ${primary};
+`;
 
 export default Box;
-
-const FancyBox = styled.div`
-  border-color: ${props => (props.theme ? props.theme : primary)};
-`;

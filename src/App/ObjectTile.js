@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { transparentize } from 'polished';
+import { UnderlineLink } from './Buttons';
+import SubHeading from './SubHeading';
+import Copy from './Copy';
 import { primary, light } from '../lib/colors';
-import { condensed } from '../lib/fonts';
 import { media } from '../lib/media';
 
 const ObjectTile = ({ object, quizTypes, index, isMinimal, theme }) => (
@@ -65,48 +65,4 @@ const TileNumber = styled.span`
   font-weight: 800;
   background-color: ${props => (props.theme === 'dark' ? primary : light)};
   padding: 0 0 0 2rem;
-`;
-
-const SubHeading = styled.h2`
-  font-size: 1.5em;
-  text-transform: uppercase;
-  font-family: ${condensed};
-  margin: 3rem 0 6rem;
-`;
-
-const Copy = styled.p`
-  line-height: 1.5;
-  margin: 0 0 6rem 0;
-`;
-
-const UnderlineLink = styled(Link)`
-  font-weight: bold;
-  color: ${({ theme }) => (theme === 'dark' ? light : primary)};
-  text-decoration: none;
-  background-image: ${({ theme }) =>
-    theme === 'dark'
-      ? `linear-gradient(
-    ${transparentize(0.75, light)},
-    ${transparentize(0.75, light)}
-  )`
-      : `linear-gradient(
-    ${transparentize(0.75, primary)},
-    ${transparentize(0.75, primary)}
-  )`};
-  background-size: 100% 1.5rem;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-
-  &:hover {
-    background-image: ${({ theme }) =>
-      theme === 'dark'
-        ? `linear-gradient(
-    ${transparentize(0.5, light)},
-    ${transparentize(0.5, light)}
-  )`
-        : `linear-gradient(
-    ${transparentize(0.5, primary)},
-    ${transparentize(0.5, primary)}
-  )`};
-  }
 `;

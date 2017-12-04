@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import sample from 'lodash.sample';
 import { getMultipleChoiceAnswers, getRandomMethod } from '../../../lib/data/methods';
 
-const Question = ({ objectId, quizId, method, render }) => {
+const GetQuestion = ({ objectId, quizId, method, render }) => {
   const question = sample(method.questions);
   const getOptions = key => {
     const options = {
@@ -20,7 +20,7 @@ const Question = ({ objectId, quizId, method, render }) => {
   });
 };
 
-Question.propTypes = {
+GetQuestion.propTypes = {
   objectId: PropTypes.string.isRequired,
   quizId: PropTypes.string.isRequired,
   method: PropTypes.shape({
@@ -29,4 +29,4 @@ Question.propTypes = {
   }).isRequired,
 };
 
-export default Question;
+export default GetQuestion;

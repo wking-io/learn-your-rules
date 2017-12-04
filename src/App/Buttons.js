@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { transparentize } from 'polished';
 import { sans } from '../lib/fonts';
-import { primary } from '../lib/colors';
+import { primary, light } from '../lib/colors';
 
 const Button = styled.button.attrs({
   theme: props => props.theme || transparentize(0.75, primary),
@@ -15,19 +15,44 @@ const Button = styled.button.attrs({
   font-weight: 600;
   letter-spacing: 0.0125em;
   cursor: pointer;
+`;
 
-  ${props =>
-    props.underline &&
-    css`
-    background-color: transparent;
-    background-image: linear-gradient(${primary}, ${primary});
-    background-repeat: no-repeat;
-    background-size: 100% 0.125em;
-    background-position: 0 90%;
-    padding: 0.25em;
-    &:hover {
-      background-image: ${props => `linear-gradient(${props.theme}, ${props.theme})`};
-  `};
+export const UnderlineButton = styled.button`
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  font-weight: bold;
+  color: ${({ theme }) => (theme === 'dark' ? light : primary)};
+  text-decoration: none;
+  background-image: ${({ theme }) =>
+    theme === 'dark'
+      ? `linear-gradient(
+${transparentize(0.75, light)},
+${transparentize(0.75, light)}
+)`
+      : `linear-gradient(
+${transparentize(0.75, primary)},
+${transparentize(0.75, primary)}
+)`};
+  background-size: 100% 1.5rem;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-image: ${({ theme }) =>
+      theme === 'dark'
+        ? `linear-gradient(
+${transparentize(0.6, light)},
+${transparentize(0.6, light)}
+)`
+        : `linear-gradient(
+${transparentize(0.6, primary)},
+${transparentize(0.6, primary)}
+)`};
+  }
 `;
 
 export const ButtonInABox = styled.button.attrs({
@@ -65,5 +90,6 @@ export const ButtonInABox = styled.button.attrs({
 `;
 
 export const LinkInABox = ButtonInABox.withComponent(Link);
+export const UnderlineLink = UnderlineButton.withComponent(Link);
 
 export default Button;
