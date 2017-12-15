@@ -9,13 +9,14 @@ import QuizHeader from './QuizHeader';
 import SubHeading from '../SubHeading';
 import Copy from '../Copy';
 import Form from './Form';
-import { getMethodCount, getMethod } from '../../lib/data/methods';
+import setupQuizObject from '../../lib/data/methods';
 import { getQuizName, getQuizQuestionTitle, getQuizShowSubmit } from '../../lib/data/quizTypes';
 
 const QuizBox = ({ objectId, quizId, answers, submitAnswer }) => {
-  const method = getMethod(objectId, answers);
+  const quiz = setupQuizObject(objectId);
+  const method = quiz.getNextMethod(answers);
   const quizName = getQuizName(quizId);
-  const quizProgress = `${answers.length + 1}/${getMethodCount(objectId)}`;
+  const quizProgress = `${answers.length + 1}/${quiz.methods.length}`;
   const questionTitle = getQuizQuestionTitle(quizId);
 
   return (

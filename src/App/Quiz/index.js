@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 import QuizBox from './QuizBox';
 import QuizResult from './QuizResult';
 import QuizReview from './QuizReview';
-import { getMethodCount } from '../../lib/data/methods';
+import setupQuizObject from '../../lib/data/methods';
 import { getQuizTheme } from '../../lib/data/objects';
 import mapProp from '../../lib/helpers/mapProp';
 import { primary } from '../../lib/colors';
@@ -47,9 +47,11 @@ export default class Quiz extends Component {
   render() {
     const { answers, showReview } = this.state;
     const { objectId } = this.props.match.params;
+    const quiz = setupQuizObject(objectId);
+    const getIds = mapProp('id');
     const missedAnswers = answers.filter(answer => !answer.isCorrect);
     const numCorrectAnswers = answers.filter(answer => answer.isCorrect).length;
-    const isComplete = answers.length === getMethodCount(objectId);
+    const isComplete = answers.length === quiz.methods.length;
     const theme = getQuizTheme(objectId) || primary;
     return showReview ? (
       <QuizReview missedAnswers={missedAnswers} />
@@ -64,7 +66,7 @@ export default class Quiz extends Component {
     ) : (
       <QuizBox
         {...this.props.match.params}
-        answers={mapProp(answers, 'id')}
+        answers={getIds(answers)}
         submitAnswer={this.submitAnswer}
         theme={theme}
       />

@@ -1,2 +1,4 @@
-const mapProp = (arr, key) => arr.map(item => item[key]);
+import * as R from 'ramda';
+
+const mapProp = prop => R.map(R.prop(prop));
 export default mapProp;
