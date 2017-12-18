@@ -16,7 +16,6 @@ class NavContainer extends Component {
   }
 
   toggleMenu = e => {
-    e.preventDefault();
     this.setState(({ menuOpen }) => ({ menuOpen: !menuOpen }));
   };
 
@@ -28,7 +27,7 @@ class NavContainer extends Component {
           <FileIcon icon="logo" /> <span>LEARN YOUR RULES</span>
         </MenuLink>
         <MenuToggle toggleMenu={this.toggleMenu} isOpen={menuOpen} />
-        <Menu isOpen={menuOpen} />
+        <Menu isOpen={menuOpen} toggleMenu={this.toggleMenu} />
       </Nav>
     );
   }

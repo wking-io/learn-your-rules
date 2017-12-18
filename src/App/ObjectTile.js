@@ -6,7 +6,7 @@ import Copy from './Copy';
 import NumberedHeader from './NumberedHeader';
 import { media } from '../lib/media';
 
-const ObjectTile = ({ object, quizTypes, index, isMinimal, theme }) => (
+const ObjectTile = ({ object, quizTypes, index, isMinimal, theme, onClick }) => (
   <Tile isMinimal={isMinimal}>
     <NumberedHeader theme={theme} number={index} />
     <main>
@@ -14,13 +14,13 @@ const ObjectTile = ({ object, quizTypes, index, isMinimal, theme }) => (
       <Copy>{object.description}</Copy>
       <ul className="list ma0 pa0">
         <li className="mb4" key="study-guide">
-          <UnderlineLink to={`/study-guide/${object.id}`} theme={theme}>
+          <UnderlineLink to={`/study-guide/${object.id}`} theme={theme} onClick={onClick}>
             Study Guide
           </UnderlineLink>
         </li>
         {quizTypes.map(quiz => (
           <li className="mb4" key={quiz.id}>
-            <UnderlineLink to={`/quiz/${object.id}/${quiz.id}`} theme={theme}>
+            <UnderlineLink to={`/quiz/${object.id}/${quiz.id}`} theme={theme} onClick={onClick}>
               {quiz.name}
             </UnderlineLink>
           </li>

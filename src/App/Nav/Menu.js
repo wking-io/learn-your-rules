@@ -6,10 +6,10 @@ import ObjectTile from '../ObjectTile';
 import objects from '../../lib/data/objects';
 import { primary, light } from '../../lib/colors';
 
-const Menu = ({ isOpen }) => (
+const Menu = ({ isOpen, toggleMenu }) => (
   <MenuWrapper isOpen={isOpen}>
     <Container>
-      <ObjectList objects={objects} Item={ObjectTile} theme="dark" />
+      <ObjectList objects={objects} Item={ObjectTile} theme="dark" onClick={toggleMenu} />
     </Container>
   </MenuWrapper>
 );
