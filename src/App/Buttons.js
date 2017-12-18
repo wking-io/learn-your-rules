@@ -19,14 +19,15 @@ const Button = styled.button.attrs({
 
 export const UnderlineButton = styled.button`
   text-decoration: none;
+  text-transform: ${props => (props.proper ? 'capitalize' : 'none')};
   background-color: transparent;
   border: none;
   border-radius: 0;
   padding: 0;
   cursor: pointer;
+  font-size: ${props => (props.large ? '8rem' : '4rem')};
   font-weight: bold;
   color: ${({ theme }) => (theme === 'dark' ? light : primary)};
-  text-decoration: none;
   background-image: ${({ theme }) =>
     theme === 'dark'
       ? `linear-gradient(
@@ -37,7 +38,7 @@ ${transparentize(0.75, light)}
 ${transparentize(0.75, primary)},
 ${transparentize(0.75, primary)}
 )`};
-  background-size: 100% 1.5rem;
+  background-size: 100% 0.375em;
   background-position: 0 100%;
   background-repeat: no-repeat;
 
