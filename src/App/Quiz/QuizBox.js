@@ -4,7 +4,7 @@ import AlmostCenter from '../AlmostCenter';
 import Box from '../Box';
 import GetQuestion from './GetQuestion';
 import Question from './Question';
-import CodeBlock from './CodeBlock';
+import CodeBlock from '../CodeBlock';
 import QuizHeader from './QuizHeader';
 import SubHeading from '../SubHeading';
 import Copy from '../Copy';

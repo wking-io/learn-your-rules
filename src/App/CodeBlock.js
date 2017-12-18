@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { transparentize } from 'polished';
-import { primary } from '../../lib/colors';
-import { monospace } from '../../lib/fonts';
+import { primary } from '../lib/colors';
+import { monospace } from '../lib/fonts';
 
 const CodeBlock = styled.pre`
   line-height: 1.6;
