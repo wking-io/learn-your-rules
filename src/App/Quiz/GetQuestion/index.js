@@ -5,6 +5,7 @@ import setupQuizObject from '../../../lib/data/methods';
 const GetQuestion = ({ objectId, quizId, method, render }) => {
   const question = sample(method.questions);
   const quiz = setupQuizObject(objectId);
+  console.log(quiz.getRandomMethod(method.name));
   const getOptions = key => {
     const options = {
       'multiple-choice': quiz.getMultipleChoiceAnswers(method.name),
@@ -17,7 +18,7 @@ const GetQuestion = ({ objectId, quizId, method, render }) => {
   return render({
     question,
     options: getOptions(quizId),
-    randomMethod: quizId === 'true-false' ? quiz.getRandomMethod(objectId, method.name) : false,
+    randomMethod: quizId === 'true-false' ? quiz.getRandomMethod(method.name) : false,
   });
 };
 

@@ -54,7 +54,7 @@ export default class Quiz extends Component {
     const isComplete = answers.length === quiz.methods.length;
     const theme = getQuizTheme(objectId) || primary;
     return showReview ? (
-      <QuizReview missedAnswers={missedAnswers} objectId={objectId} />
+      <QuizReview {...this.props.match.params} missedAnswers={missedAnswers} />
     ) : isComplete ? (
       <QuizResult
         numCorrectAnswers={numCorrectAnswers}

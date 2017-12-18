@@ -15,7 +15,7 @@ const find = (arr, prop) => val => arr.find(method => method[prop] === val);
 
 // getFilteredMethodNames :: String -> [Objects] -> [String]
 const getFilteredMethodNames = methodName =>
-  R.compose(getNames, R.filter(R.compose(R.complement(R.propEq('name', methodName)))));
+  R.compose(getNames, R.reject(R.propEq('name', methodName)));
 
 export const setupQuizObject = id => {
   const allMethods = {
@@ -40,8 +40,7 @@ export const setupQuizObject = id => {
       R.prepend(methodName),
       R.aperture(3),
       R.partialRight(sampleSize, [3]),
-      getFilteredMethodNames(methodName),
-      getNames
+      getFilteredMethodNames(methodName)
     )(methods);
   });
 
