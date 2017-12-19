@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Box from '../Box';
 import getPercent from '../../lib/helpers/getPercent';
 import { ButtonInABox, LinkInABox, UnderlineButton } from '../Buttons.js';
+import { primary } from '../../lib/colors';
 
 const QuizResult = ({ numCorrectAnswers, numTotalAnswers, showReview, resetQuiz }) => (
   <div className="vh-100 flex items-center justify-center">
@@ -15,10 +16,10 @@ const QuizResult = ({ numCorrectAnswers, numTotalAnswers, showReview, resetQuiz 
           <UnderlineButton onClick={showReview}>Review Missed Methods</UnderlineButton>
         </div>
       </div>
-      <div className="flex">
+      <BoxOfButtons className="flex">
         <ButtonInABox onClick={resetQuiz}>Try Again</ButtonInABox>
         <LinkInABox to="/">Main Menu</LinkInABox>
-      </div>
+      </BoxOfButtons>
     </Box>
   </div>
 );
@@ -36,4 +37,10 @@ const Grade = styled.h1`
   font-size: 10vw;
   text-align: center;
   margin: 0;
+`;
+
+const BoxOfButtons = styled.div`
+  > *:nth-child(2n) {
+    border-left: 1px solid ${primary};
+  }
 `;

@@ -76,7 +76,8 @@ export const ButtonInABox = styled.button.attrs({
 
   &:hover {
     color: white;
-    background-color: ${({ theme }) => theme};
+    background-color: ${primary};
+    border-top: 1px solid ${primary};
   }
 
   ${({ primary }) =>
