@@ -4,6 +4,7 @@ import MultipleChoiceForm from './MultipleChoiceForm';
 import TrueFalseForm from './TrueFalseForm';
 import FillInTheBlankForm from './FillInTheBlankForm';
 import makeBool from '../../../lib/helpers/makeBool';
+import autocompleteOff from '../../../lib/helpers/autocompleteOff';
 
 export default class Form extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ export default class Form extends Component {
 
   handleChange = e => {
     e.preventDefault();
-    e.target.autocomplete = 'off';
+    autocompleteOff(e);
     this.setState({ answer: e.target.value });
   };
 
@@ -68,45 +69,45 @@ export default class Form extends Component {
   setInputRef = ref => (this.input = ref);
 
   render() {
-    const { quizId, options, showSubmit, theme } = this.props;
+    const { quizId, options, showSubmit } = this.props;
     const { answer } = this.state;
     return quizId === 'multiple-choice' ? (
       <MultipleChoiceForm
         answers={options}
-        isDisabled={answer.length <= 0}
-        showSubmit={showSubmit}
-        theme={theme}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
         handleSubmit={this.handleSubmit}
+        isDisabled={answer.length <= 0}
+        showSubmit={showSubmit}
       />
     ) : quizId === 'true-false' ? (
       <TrueFalseForm
         answers={options}
-        isDisabled={answer.length <= 0}
-        showSubmit={showSubmit}
-        theme={theme}
         handleChange={this.handleChangeTrueFalse}
         handleClick={this.handleClick}
         handleSubmit={this.handleSubmit}
+        isDisabled={answer.length <= 0}
+        showSubmit={showSubmit}
       />
     ) : (
       <FillInTheBlankForm
-        answer={this.state.answer}
-        isDisabled={answer.length <= 0}
-        showSubmit={showSubmit}
-        theme={theme}
+        answer={answer}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        isDisabled={answer.length <= 0}
         setInputRef={this.setInputRef}
+        showSubmit={showSubmit}
       />
     );
   }
 }
 
 Form.propTypes = {
-  options: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]).isRequired,
-  showSubmit: PropTypes.bool.isRequired,
-  randomMethod: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   method: PropTypes.string.isRequired,
+  options: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]).isRequired,
+  question: PropTypes.string.isRequired,
+  quizId: PropTypes.string.isRequired,
+  randomMethod: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  showSubmit: PropTypes.bool.isRequired,
+  submitAnswer: PropTypes.func.isRequired,
 };

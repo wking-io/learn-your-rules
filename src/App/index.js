@@ -11,9 +11,9 @@ const App = () => (
     <Container>
       <Nav />
       <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/quiz/:objectId/:quizId" component={Quiz} />
-        <Route path="/study-guide/:objectId" component={StudyGuide} />
+        <Route component={Dashboard} exact path="/" />
+        <Route component={Quiz} path="/quiz/:objectId/:quizId" />
+        <Route component={StudyGuide} path="/study-guide/:objectId" />
       </Switch>
     </Container>
   </BrowserRouter>

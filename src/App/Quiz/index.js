@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
+import PropTypes from 'prop-types';
 import storage from 'store';
 import QuizBox from './QuizBox';
 import QuizResult from './QuizResult';
@@ -13,7 +14,6 @@ export default class Quiz extends Component {
   constructor(props) {
     super(props);
     const answers = this.getAnswers();
-    console.log(answers);
     this.state = {
       answers: answers || [],
       showReview: false,
@@ -21,7 +21,8 @@ export default class Quiz extends Component {
   }
 
   componentDidUpdate() {
-    this.updateAnswers(this.state.answers);
+    const { answers } = this.state;
+    this.updateAnswers(answers);
   }
 
   componentWillUnmount() {
@@ -32,7 +33,6 @@ export default class Quiz extends Component {
   getAnswers = () => storage.get('answers');
   deleteAnswers = () => storage.remove('answers');
 
-  componentDidMount;
   submitAnswer = answer => {
     this.setState(prevState =>
       update(prevState, {
@@ -89,3 +89,11 @@ export default class Quiz extends Component {
     );
   }
 }
+
+Quiz.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      objectId: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};

@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { primary } from '../../lib/colors';
 
-const MenuToggle = ({ toggleMenu, isOpen }) => (
+const MenuToggle = ({ isOpen, toggleMenu }) => (
   <Toggle aria-expanded={isOpen} onClick={toggleMenu}>
     <span />
     <span />
     <span />
   </Toggle>
 );
+
+MenuToggle.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+};
 
 export default MenuToggle;
 

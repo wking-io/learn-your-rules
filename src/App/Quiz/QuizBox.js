@@ -27,9 +27,9 @@ const QuizBox = ({ objectId, quizId, answers, submitAnswer }) => {
           <Copy noSpace>{quizProgress}</Copy>
         </QuizHeader>
         <GetQuestion
+          method={method}
           objectId={objectId}
           quizId={quizId}
-          method={method}
           render={({ question, options, randomMethod }) => (
             <main>
               <Question>
@@ -38,12 +38,12 @@ const QuizBox = ({ objectId, quizId, answers, submitAnswer }) => {
               </Question>
               <Form
                 method={method.name}
-                randomMethod={randomMethod}
                 options={options}
-                showSubmit={getQuizShowSubmit(quizId)}
-                quizId={quizId}
-                submitAnswer={submitAnswer}
                 question={randomMethod ? question(randomMethod) : question()}
+                quizId={quizId}
+                randomMethod={randomMethod}
+                showSubmit={getQuizShowSubmit(quizId)}
+                submitAnswer={submitAnswer}
               />
             </main>
           )}
@@ -54,9 +54,9 @@ const QuizBox = ({ objectId, quizId, answers, submitAnswer }) => {
 };
 
 QuizBox.propTypes = {
+  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
   objectId: PropTypes.string.isRequired,
   quizId: PropTypes.string.isRequired,
-  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
   submitAnswer: PropTypes.func.isRequired,
 };
 

@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { primary } from '../../../lib/colors';
 
-const RadioAnswer = ({ method, index, theme, isBool, handleChange, handleClick }) => (
-  <FancyRadio className="w-50" theme={theme}>
+const RadioAnswer = ({ method, index, isBool, handleChange, handleClick }) => (
+  <FancyRadio>
     <input
-      type="radio"
-      value={isBool ? !index : method}
-      name="answer"
       id={`answer-${method}`}
+      name="answer"
       onChange={handleChange}
       onFocus={handleChange}
+      type="radio"
+      value={isBool ? !index : method}
     />
     <label
       className="db"
@@ -24,16 +24,18 @@ const RadioAnswer = ({ method, index, theme, isBool, handleChange, handleClick }
 );
 
 RadioAnswer.propTypes = {
-  method: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  isBool: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  isBool: PropTypes.bool.isRequired,
+  method: PropTypes.string.isRequired,
 };
 
 export default RadioAnswer;
 
 const FancyRadio = styled.div`
+  width: 50%;
+
   > input[type='radio'] {
     position: absolute;
     left: -9999px;

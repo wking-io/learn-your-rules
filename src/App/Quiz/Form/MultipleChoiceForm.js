@@ -5,43 +5,34 @@ import QuizSubmit from './QuizSubmit';
 
 const MultipleChoiceForm = ({
   answers,
+  handleChange,
+  handleClick,
+  handleSubmit,
   isDisabled,
   showSubmit,
-  theme,
-  handleSubmit,
-  handleClick,
-  handleChange,
 }) => (
   <form className="flex flex-wrap" onSubmit={handleSubmit}>
     {answers.map((answer, i) => (
       <RadioAnswer
-        method={answer}
-        key={`answer-${answer}`}
-        index={i}
-        isBool={false}
-        theme={theme}
         handleChange={handleChange}
         handleClick={handleClick}
+        index={i}
+        isBool={false}
+        key={`answer-${answer}`}
+        method={answer}
       />
     ))}
-    <QuizSubmit
-      type="submit"
-      value="Submit Answer"
-      theme={theme}
-      className="w-100 pl3 pr3 pt3 pb3"
-      visible={showSubmit}
-      disabled={isDisabled}
-    />
+    <QuizSubmit disabled={isDisabled} type="submit" value="Submit Answer" visible={showSubmit} />
   </form>
 );
 
 MultipleChoiceForm.propTypes = {
   answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool.isRequired,
   showSubmit: PropTypes.bool.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
 };
 
 export default MultipleChoiceForm;

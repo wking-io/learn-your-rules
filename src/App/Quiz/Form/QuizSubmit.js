@@ -18,8 +18,8 @@ const QuizSubmit = styled.input`
     cursor: default;
   }
 
-  ${props =>
-    props.visible ||
+  ${({ visible }) =>
+    visible ||
     css`
       position: absolute;
       left: -9999px;

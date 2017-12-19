@@ -5,7 +5,7 @@ import { sans } from '../lib/fonts';
 import { primary, light } from '../lib/colors';
 
 const Button = styled.button.attrs({
-  theme: props => props.theme || transparentize(0.75, primary),
+  theme: ({ theme }) => theme || transparentize(0.75, primary),
 })`
   background-color: grey;
   border: none;
@@ -19,13 +19,13 @@ const Button = styled.button.attrs({
 
 export const UnderlineButton = styled.button`
   text-decoration: none;
-  text-transform: ${props => (props.proper ? 'capitalize' : 'none')};
+  text-transform: ${({ proper }) => (proper ? 'capitalize' : 'none')};
   background-color: transparent;
   border: none;
   border-radius: 0;
   padding: 0;
   cursor: pointer;
-  font-size: ${props => (props.large ? '8rem' : '4rem')};
+  font-size: ${({ large }) => (large ? '8rem' : '4rem')};
   font-weight: bold;
   color: ${({ theme }) => (theme === 'dark' ? light : primary)};
   background-image: ${({ theme }) =>
@@ -57,14 +57,14 @@ ${transparentize(0.6, primary)}
 `;
 
 export const ButtonInABox = styled.button.attrs({
-  theme: props => props.theme || transparentize(0.75, primary),
+  theme: ({ theme }) => theme || transparentize(0.75, primary),
 })`
   display: block;
   text-align: center;
   text-decoration: none;
   background-color: transparent;
   border: none;
-  border-top: 1px solid ${props => props.theme};
+  border-top: 1px solid ${({ theme }) => theme};
   border-radius: 0;
   padding: 1em 2em;
   font-family: ${sans};
@@ -76,14 +76,14 @@ export const ButtonInABox = styled.button.attrs({
 
   &:hover {
     color: white;
-    background-color: ${props => props.theme};
+    background-color: ${({ theme }) => theme};
   }
 
-  ${props =>
-    props.primary &&
+  ${({ primary }) =>
+    primary &&
     css`
     color: white;
-    background-color: ${props => props.theme};
+    background-color: ${({ theme }) => theme};
     &:hover {
       background-color: transparent;
       color: ${primary};

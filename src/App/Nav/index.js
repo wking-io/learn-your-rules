@@ -23,10 +23,10 @@ class NavContainer extends Component {
     const { menuOpen } = this.state;
     return (
       <Nav className="flex items-center justify-between">
-        <MenuLink to="/" className="flex items-center">
+        <MenuLink className="flex items-center" to="/">
           <FileIcon icon="logo" /> <span>LEARN YOUR RULES</span>
         </MenuLink>
-        <MenuToggle toggleMenu={this.toggleMenu} isOpen={menuOpen} />
+        <MenuToggle isOpen={menuOpen} toggleMenu={this.toggleMenu} />
         <Menu isOpen={menuOpen} toggleMenu={this.toggleMenu} />
       </Nav>
     );

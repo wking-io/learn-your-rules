@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import quizTypes from '../lib/data/quizTypes';
 import { media } from '../lib/media';
@@ -9,9 +10,9 @@ const ObjectList = ({ objects, Item, ...props }) => {
     <BlockList>
       {objects.map((object, i) => (
         <Item
-          key={object.id}
           index={i}
           isMinimal={isMinimal}
+          key={object.id}
           object={object}
           quizTypes={quizTypes}
           {...props}
@@ -19,6 +20,11 @@ const ObjectList = ({ objects, Item, ...props }) => {
       ))}
     </BlockList>
   );
+};
+
+ObjectList.propTypes = {
+  Item: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
+  objects: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default ObjectList;

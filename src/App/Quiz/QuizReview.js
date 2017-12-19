@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import NumberedHeader from '../NumberedHeader';
 import CodeBlock from '../CodeBlock';
 import { UnderlineLink } from '../Buttons';
@@ -15,7 +16,7 @@ const QuizReview = ({ missedAnswers, objectId, quizId }) => {
           <div className="flex flex-wrap mt5 mb6">
             <div className="w-50">
               <Copy noSpace>Your Answer:</Copy>
-              <UnderlineLink to={url(objectId, answer.id)} large proper>
+              <UnderlineLink large proper to={url(objectId, answer.id)}>
                 {quizId === 'true-false'
                   ? answer.submittedAnswer.toString()
                   : answer.submittedAnswer}
@@ -23,7 +24,7 @@ const QuizReview = ({ missedAnswers, objectId, quizId }) => {
             </div>
             <div className="w-50">
               <Copy noSpace>Correct Answer:</Copy>
-              <UnderlineLink to={url(objectId, answer.id)} large="true" proper="true">
+              <UnderlineLink large="true" proper="true" to={url(objectId, answer.id)}>
                 {quizId === 'true-false' ? answer.correctAnswer.toString() : answer.correctAnswer}
               </UnderlineLink>
             </div>
@@ -33,6 +34,13 @@ const QuizReview = ({ missedAnswers, objectId, quizId }) => {
       ))}
     </ul>
   );
+};
+
+QuizReview.propTypes = {
+  missedAnswers: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool]))
+    .isRequired,
+  objectId: PropTypes.string.isRequired,
+  quizId: PropTypes.string.isRequired,
 };
 
 const ReviewItem = styled.li`

@@ -4,38 +4,45 @@ import styled from 'styled-components';
 import { transparentize } from 'polished';
 import QuizSubmit from './QuizSubmit';
 import { primary } from '../../../lib/colors';
+import autocompleteOff from '../../../lib/helpers/autocompleteOff';
 
 const FillInTheBlankForm = ({
-  isDisabled,
-  showSubmit,
   answer,
   handleChange,
   handleSubmit,
+  isDisabled,
   setInputRef,
+  showSubmit,
 }) => (
   <form className="flex flex-wrap" onSubmit={handleSubmit(this.input)}>
-    <input type="hidden" value="something" />
     <InputAnswer
-      type="text"
-      name="answer"
-      id="answer"
-      placeholder="Enter answer here..."
-      onChange={handleChange}
-      value={answer}
       autoComplete="answer"
-      innerRef={input => setInputRef(input)}
+      id="answer"
+      innerRef={setInputRef}
+      name="answer"
+      onChange={handleChange}
+      onFocus={autocompleteOff}
+      placeholder="Enter answer here..."
+      type="text"
+      value={answer}
     />
-    <QuizSubmit type="submit" value="Submit Answer" visible={showSubmit} disabled={isDisabled} />
+    <QuizSubmit disabled={isDisabled} type="submit" value="Submit Answer" visible={showSubmit} />
   </form>
 );
 
 export default FillInTheBlankForm;
 
 FillInTheBlankForm.propTypes = {
-  isDisabled: PropTypes.bool.isRequired,
-  showSubmit: PropTypes.bool.isRequired,
+  answer: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  setInputRef: PropTypes.func.isRequired,
+  showSubmit: PropTypes.bool.isRequired,
+};
+
+FillInTheBlankForm.defaultProps = {
+  answer: '',
 };
 
 const InputAnswer = styled.input`

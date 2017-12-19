@@ -26,13 +26,8 @@ const QuizResult = ({ numCorrectAnswers, numTotalAnswers, showReview, resetQuiz 
 QuizResult.propTypes = {
   numCorrectAnswers: PropTypes.number.isRequired,
   numTotalAnswers: PropTypes.number.isRequired,
-  showReview: PropTypes.func.isRequired,
   resetQuiz: PropTypes.func.isRequired,
-  theme: PropTypes.string.isRequired,
-};
-
-QuizResult.defaultProps = {
-  missedAnswers: {},
+  showReview: PropTypes.func.isRequired,
 };
 
 export default QuizResult;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Container from '../Container';
 import ObjectList from '../ObjectList';
 import ObjectTile from '../ObjectTile';
@@ -9,10 +10,15 @@ import { primary, light } from '../../lib/colors';
 const Menu = ({ isOpen, toggleMenu }) => (
   <MenuWrapper isOpen={isOpen}>
     <Container>
-      <ObjectList objects={objects} Item={ObjectTile} theme="dark" onClick={toggleMenu} />
+      <ObjectList Item={ObjectTile} objects={objects} onClick={toggleMenu} theme="dark" />
     </Container>
   </MenuWrapper>
 );
+
+Menu.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+};
 
 export default Menu;
 
@@ -28,5 +34,5 @@ const MenuWrapper = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   transition: all 0.3s cubic-bezier(0.19, 0.66, 0.67, 0.98);
-  transform: ${props => (props.isOpen ? 'translateX(-100vw)' : 'translateX(0)')};
+  transform: ${({ isOpen }) => (isOpen ? 'translateX(-100vw)' : 'translateX(0)')};
 `;

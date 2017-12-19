@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { primary, light } from '../../lib/colors';
 
@@ -8,11 +9,20 @@ const NumberedHeader = ({ theme, number }) => (
   </Header>
 );
 
+NumberedHeader.propTypes = {
+  number: PropTypes.number.isRequired,
+  theme: PropTypes.string,
+};
+
+NumberedHeader.defaultProps = {
+  theme: '',
+};
+
 export default NumberedHeader;
 
 const Header = styled.header`
-  background-image: ${props =>
-    props.theme === 'dark'
+  background-image: ${({ theme }) =>
+    theme === 'dark'
       ? `linear-gradient(${light}, ${light})`
       : `linear-gradient(${primary}, ${primary})`};
   background-size: 100% 1.5rem;
@@ -24,6 +34,6 @@ const Header = styled.header`
 const Number = styled.span`
   line-height: 1;
   font-weight: 800;
-  background-color: ${props => (props.theme === 'dark' ? primary : light)};
+  background-color: ${({ theme }) => (theme === 'dark' ? primary : light)};
   padding: 0 0 0 2rem;
 `;
