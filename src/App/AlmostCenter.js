@@ -9,7 +9,7 @@ const AlmostCenter = styled.div`
   /* border-top: 4px solid ${props => (props.theme ? props.theme : primary)}; */
 
   @media (min-aspect-ratio: 3/5) {
-    height: 90vh;
+    height: 88vh;
   }
 `;
 
