@@ -8,7 +8,6 @@ import { primary } from '../../../lib/colors';
 const FillInTheBlankForm = ({
   isDisabled,
   showSubmit,
-  theme,
   answer,
   handleChange,
   handleSubmit,
@@ -22,20 +21,11 @@ const FillInTheBlankForm = ({
       id="answer"
       placeholder="Enter answer here..."
       onChange={handleChange}
-      theme={theme}
       value={answer}
       autoComplete="answer"
       innerRef={input => setInputRef(input)}
-      className="ba0 pl3 pr3 pt3 pb3 ml3 mr3 mb3 w-100"
     />
-    <QuizSubmit
-      type="submit"
-      value="Submit Answer"
-      className="w-100 pl3 pr3 pt3 pb3"
-      visible={showSubmit}
-      disabled={isDisabled}
-      theme={theme}
-    />
+    <QuizSubmit type="submit" value="Submit Answer" visible={showSubmit} disabled={isDisabled} />
   </form>
 );
 
@@ -49,12 +39,14 @@ FillInTheBlankForm.propTypes = {
 };
 
 const InputAnswer = styled.input`
-  border-style: solid;
-  border-color: ${transparentize(0.75, primary)};
+  width: 100%;
+  border: 0.5rem solid ${transparentize(0.75, primary)};
+  padding: 4rem;
+  margin: 0 6rem 4rem;
   color: ${primary};
 
   :focus {
-    border-color: ${props => (props.theme ? props.theme : primary)};
+    border-color: ${primary};
     outline: none;
   }
 `;

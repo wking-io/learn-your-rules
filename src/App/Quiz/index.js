@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
+import storage from 'store';
 import QuizBox from './QuizBox';
 import QuizResult from './QuizResult';
 import QuizReview from './QuizReview';
@@ -11,12 +12,27 @@ import { primary } from '../../lib/colors';
 export default class Quiz extends Component {
   constructor(props) {
     super(props);
+    const answers = this.getAnswers();
+    console.log(answers);
     this.state = {
-      answers: [],
+      answers: answers || [],
       showReview: false,
     };
   }
 
+  componentDidUpdate() {
+    this.updateAnswers(this.state.answers);
+  }
+
+  componentWillUnmount() {
+    this.deleteAnswers();
+  }
+
+  updateAnswers = answers => storage.set('answers', answers);
+  getAnswers = () => storage.get('answers');
+  deleteAnswers = () => storage.remove('answers');
+
+  componentDidMount;
   submitAnswer = answer => {
     this.setState(prevState =>
       update(prevState, {

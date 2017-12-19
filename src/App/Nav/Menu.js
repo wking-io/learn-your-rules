@@ -18,6 +18,7 @@ export default Menu;
 
 const MenuWrapper = styled.div`
   position: fixed;
+  z-index: 999;
   background-color: ${primary};
   color: ${light};
   width: 100vw;

@@ -23,6 +23,7 @@ export default class Form extends Component {
 
   handleChange = e => {
     e.preventDefault();
+    e.target.autocomplete = 'off';
     this.setState({ answer: e.target.value });
   };
 

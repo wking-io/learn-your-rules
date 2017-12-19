@@ -27,7 +27,7 @@ QuizResult.propTypes = {
   numCorrectAnswers: PropTypes.number.isRequired,
   numTotalAnswers: PropTypes.number.isRequired,
   showReview: PropTypes.func.isRequired,
-  restartQuiz: PropTypes.func.isRequired,
+  resetQuiz: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
 };
 

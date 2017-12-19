@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components';
+import { transparentize } from 'polished';
 import { primary } from '../../../lib/colors';
 
 const QuizSubmit = styled.input`
-  background-color: ${props => (props.theme ? props.theme : primary)};
+  width: 100%;
+  padding: 4rem;
+  background-color: ${primary};
   color: white;
   border: none;
 
@@ -21,7 +24,7 @@ const QuizSubmit = styled.input`
       position: absolute;
       left: -9999px;
     `} :disabled {
-    background-color: rgba(${props => (props.theme ? props.theme : primary)}, 0.5);
+    background-color: ${transparentize(0.75, primary)};
   }
 `;
 
