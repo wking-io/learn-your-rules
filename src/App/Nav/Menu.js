@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Container from '../Container';
-import ObjectList from '../ObjectList';
+import ItemList from '../ItemList';
 import ObjectTile from '../ObjectTile';
 import objects from '../../lib/data/objects';
 import { primary, light } from '../../lib/colors';
@@ -10,7 +10,7 @@ import { primary, light } from '../../lib/colors';
 const Menu = ({ isOpen, toggleMenu }) => (
   <MenuWrapper isOpen={isOpen}>
     <Container>
-      <ObjectList Item={ObjectTile} objects={objects} onClick={toggleMenu} theme="dark" />
+      <ItemList Component={ObjectTile} items={objects} onClick={toggleMenu} theme="dark" />
     </Container>
   </MenuWrapper>
 );

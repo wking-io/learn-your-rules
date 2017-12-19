@@ -92,5 +92,6 @@ export const ButtonInABox = styled.button.attrs({
 
 export const LinkInABox = ButtonInABox.withComponent(Link);
 export const UnderlineLink = UnderlineButton.withComponent(Link);
+export const UnderlineExternalLink = UnderlineButton.withComponent('a');
 
 export default Button;

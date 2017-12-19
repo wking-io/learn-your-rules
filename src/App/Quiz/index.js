@@ -5,10 +5,8 @@ import storage from 'store';
 import QuizBox from './QuizBox';
 import QuizResult from './QuizResult';
 import QuizReview from './QuizReview';
-import setupQuizObject from '../../lib/data/methods';
-import { getQuizTheme } from '../../lib/data/objects';
+import setupMethods from '../../lib/data/methods';
 import mapProp from '../../lib/helpers/mapProp';
-import { primary } from '../../lib/colors';
 
 export default class Quiz extends Component {
   constructor(props) {
@@ -63,12 +61,11 @@ export default class Quiz extends Component {
   render() {
     const { answers, showReview } = this.state;
     const { objectId } = this.props.match.params;
-    const quiz = setupQuizObject(objectId);
+    const quiz = setupMethods(objectId);
     const getIds = mapProp('id');
     const missedAnswers = answers.filter(answer => !answer.isCorrect);
     const numCorrectAnswers = answers.filter(answer => answer.isCorrect).length;
     const isComplete = answers.length === quiz.methods.length;
-    const theme = getQuizTheme(objectId) || primary;
     return showReview ? (
       <QuizReview {...this.props.match.params} missedAnswers={missedAnswers} />
     ) : isComplete ? (
@@ -77,14 +74,12 @@ export default class Quiz extends Component {
         numTotalAnswers={answers.length}
         resetQuiz={this.resetQuiz}
         showReview={this.showReview}
-        theme={theme}
       />
     ) : (
       <QuizBox
         {...this.props.match.params}
         answers={getIds(answers)}
         submitAnswer={this.submitAnswer}
-        theme={theme}
       />
     );
   }

@@ -2,8 +2,12 @@ import questionTemplate from '../../helpers/questionTemplate';
 
 const arrayMethods = [
   {
+    id: 'map',
     name: 'map',
-    description: '',
+    description:
+      'A method that transforms each element in the array by applying the passed in function to each individual element in the array. This method is a non-mutating method and returns a brand new array each time it is called.',
+    referenceUrl:
+      'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map',
     questions: [
       questionTemplate`const numbers = [2, 4, 6, 8];
 const result = numbers.${''}(number => number * 2);
@@ -11,8 +15,12 @@ const result = numbers.${''}(number => number * 2);
     ],
   },
   {
+    id: 'filter',
     name: 'filter',
-    description: '',
+    description:
+      'A method that transforms each element in the array by applying the passed in function to each individual element in the array. This method is a non-mutating method and returns a brand new array each time it is called.',
+    referenceUrl:
+      'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter',
     questions: [
       questionTemplate`const people = [
   { name: 'jerry', age: 53 }, 
@@ -25,8 +33,12 @@ const result = people.${''}(person => person.age < 40);
     ],
   },
   {
+    id: 'find',
     name: 'find',
-    description: '',
+    description:
+      'A method that transforms each element in the array by applying the passed in function to each individual element in the array. This method is a non-mutating method and returns a brand new array each time it is called.',
+    referenceUrl:
+      'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find',
     questions: [
       questionTemplate`const people = [
   { name: 'jerry', age: 53 }, 
@@ -39,8 +51,12 @@ const result = people.${''}(person => person.name === 'andrew');
     ],
   },
   {
+    id: 'sort',
     name: 'sort',
-    description: '',
+    description:
+      'A method that transforms each element in the array by applying the passed in function to each individual element in the array. This method is a non-mutating method and returns a brand new array each time it is called.',
+    referenceUrl:
+      'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort',
     questions: [
       questionTemplate`const people = [
   { name: 'jerry', age: 53 }, 
@@ -58,8 +74,12 @@ const result = people.${''}((a, b) => a.age < b.age);
     ],
   },
   {
+    id: 'every',
     name: 'every',
-    description: '',
+    description:
+      'A method that transforms each element in the array by applying the passed in function to each individual element in the array. This method is a non-mutating method and returns a brand new array each time it is called.',
+    referenceUrl:
+      'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every',
     questions: [
       questionTemplate`const people = [
   { name: 'jerry', age: 53 }, 
@@ -72,8 +92,12 @@ const result = people.${''}(person => person.age < 40);
     ],
   },
   {
+    id: 'reduce',
     name: 'reduce',
-    description: '',
+    description:
+      'A method that transforms each element in the array by applying the passed in function to each individual element in the array. This method is a non-mutating method and returns a brand new array each time it is called.',
+    referenceUrl:
+      'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce',
     questions: [
       questionTemplate`const people = [
   { name: 'jerry', age: 53 }, 

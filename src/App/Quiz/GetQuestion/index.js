@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import sample from 'lodash.sample';
-import setupQuizObject from '../../../lib/data/methods';
+import setupMethods from '../../../lib/data/methods';
 
 const GetQuestion = ({ objectId, quizId, method, render }) => {
   const question = sample(method.questions);
-  const quiz = setupQuizObject(objectId);
+  const quiz = setupMethods(objectId);
   const getOptions = key => {
     const options = {
       'multiple-choice': quiz.getMultipleChoiceAnswers(method.name),

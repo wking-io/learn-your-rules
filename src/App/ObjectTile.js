@@ -1,27 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { UnderlineLink } from './Buttons';
 import SubHeading from './SubHeading';
 import Copy from './Copy';
+import Tile from './Tile';
 import NumberedHeader from './NumberedHeader';
-import { media } from '../lib/media';
+import quizTypes from '../lib/data/quizTypes';
 
-const ObjectTile = ({ object, quizTypes, index, isMinimal, theme, onClick }) => (
-  <Tile isMinimal={isMinimal}>
+const ObjectTile = ({ item, index, size, theme, onClick }) => (
+  <Tile size={size}>
     <NumberedHeader number={index} theme={theme} />
     <main>
-      <SubHeading>{object.name}</SubHeading>
-      <Copy>{object.description}</Copy>
+      <SubHeading>{item.name}</SubHeading>
+      <Copy>{item.description}</Copy>
       <ul className="list ma0 pa0">
         <li className="mb4" key="study-guide">
-          <UnderlineLink onClick={onClick} theme={theme} to={`/study-guide/${object.id}`}>
+          <UnderlineLink onClick={onClick} theme={theme} to={`/study-guide/${item.id}`}>
             Study Guide
           </UnderlineLink>
         </li>
         {quizTypes.map(quiz => (
           <li className="mb4" key={quiz.id}>
-            <UnderlineLink onClick={onClick} theme={theme} to={`/quiz/${object.id}/${quiz.id}`}>
+            <UnderlineLink onClick={onClick} theme={theme} to={`/quiz/${item.id}/${quiz.id}`}>
               {quiz.name}
             </UnderlineLink>
           </li>
@@ -33,30 +33,17 @@ const ObjectTile = ({ object, quizTypes, index, isMinimal, theme, onClick }) => 
 
 ObjectTile.propTypes = {
   index: PropTypes.number.isRequired,
-  isMinimal: PropTypes.bool.isRequired,
-  object: PropTypes.shape({
+  item: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
-  quizTypes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  onClick: PropTypes.func,
+  size: PropTypes.string.isRequired,
   theme: PropTypes.string,
 };
 
 ObjectTile.defaultProps = {
   theme: '',
+  onClick: () => {},
 };
 
 export default ObjectTile;
-
-const Tile = styled.div`
-  margin: 0 0 16rem 0;
-
-  ${media.m`
-    flex: 0 0 calc(50% - 8rem);
-    margin: 0 0 8rem 0;
-  `} ${({ isMinimal }) =>
-      isMinimal ||
-      media.l`
-      flex-basis: calc(33% - 8rem);
-  `};
-`;

@@ -17,7 +17,7 @@ const find = (arr, prop) => val => arr.find(method => method[prop] === val);
 const getFilteredMethodNames = methodName =>
   R.compose(getNames, R.reject(R.propEq('name', methodName)));
 
-export const setupQuizObject = id => {
+export const setupMethods = id => {
   const allMethods = {
     array,
     string,
@@ -55,4 +55,4 @@ export const setupQuizObject = id => {
   };
 };
 
-export default setupQuizObject;
+export default setupMethods;
